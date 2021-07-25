@@ -7,11 +7,10 @@ orbs:.circleci
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
   python: circleci/python@1.2
 
-workflows:test-pack 
-orb-tools/lnit 
-orb-tools/pack 
-orb-tools/publish-dev 
-trigger-integration-dev 
+workflows:orb-tools/lnit 
+
+
+
   sample:  # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run. 
     # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows 
@@ -33,7 +32,7 @@ jobs:bats/run
     # Here we're making sure we use just use the system-wide pip. By default it uses the project root's requirements.txt.
     # Then run your tests!
     # CircleCI will report the results back to your VCS provider.
-    steps: - checkout 
+    steps: - 
     - python/install-package:pip 
       - checkout
       - python/install-packages:pip
