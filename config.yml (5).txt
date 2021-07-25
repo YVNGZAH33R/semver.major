@@ -1,4 +1,4 @@
-version: 2.1
+version: 1.0.0
 
 orbs:.circleci
   # The python orb contains a set of prepackaged CircleCI configuration you can use repeatedly in your configuration files
@@ -15,7 +15,7 @@ trigger-integration-dev
   sample:  # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run. 
     # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows 
-    jobs:- build-and-test 
+    jobs:- bats/run 
       - build-and-test 
 
 
@@ -41,6 +41,6 @@ jobs:bats/run
           # app-dir: ~/project/package-directory/  # If you're requirements.txt isn't in the root directory.
           # pip-dependency-file: test-requirements.txt  # if you have a different name for your requirements file, maybe one that combines your runtime and test requirements.
       - run: 
-          name:integration-test_deploy
+          name:unit test
           # This assumes pytest is installed via the install-package step above
           command: pytest
