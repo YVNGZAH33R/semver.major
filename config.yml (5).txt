@@ -7,12 +7,16 @@ orbs:.circleci
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
   python: circleci/python@1.2
 
-workflows:orbs-tool/lnit
+workflows:test-pack 
+orb-tools/lnit 
+orb-tools/pack 
+orb-tools/publish-dev 
+trigger-integration-dev 
   sample:  # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run. 
     # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows 
-    jobs:
-      - build-and-test
+    jobs:- build-and-test 
+      - build-and-test 
 
 
 jobs:hold-for-dev-publish
@@ -22,14 +26,15 @@ jobs:hold-for-dev-publish
     # A list of available CircleCI Docker convenience images are available here: https://circleci.com/developer/images/image/cimg/python
     # The executor is the environment in which the steps below will be executed - below will use a python 3.9 container
     # Change the version below to your required version of python
-    docker:
+    docker: cimg/python: 3.8 
       - image: cimg/python:3.8
     # Checkout the code as the first step. This is a dedicated CircleCI step.
     # The python orb's install-packages step will install the dependencies from a Pipfile via Pipenv by default.
     # Here we're making sure we use just use the system-wide pip. By default it uses the project root's requirements.txt.
     # Then run your tests!
     # CircleCI will report the results back to your VCS provider.
-    steps:
+    steps: - checkout 
+    - python/install-package:pip 
       - checkout
       - python/install-packages:pip
           pkg-manager: pip
